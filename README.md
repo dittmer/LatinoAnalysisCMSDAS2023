@@ -2,11 +2,11 @@ This is a sparse copy of the LatinoAnalysis repository (https://github.com/latin
 
 Setup:
 
-cmsrel CMSSW_10_6_4
-cd CMSSW_10_6_4/src/
-cmsenv
+    cmsrel CMSSW_10_6_4
+    cd CMSSW_10_6_4/src/
+    cmsenv
 
-git clone git@github.com:dittmer/LatinoAnalysisCMSDAS2023.git LatinoAnalysis
-source LatinoAnalysis/SetupMultiDraw.sh
-scram b -j 10
+    git clone git@github.com:dittmer/LatinoAnalysisCMSDAS2023.git LatinoAnalysis
+    source LatinoAnalysis/SetupMultiDraw.sh
+    scram b -j 10
 
