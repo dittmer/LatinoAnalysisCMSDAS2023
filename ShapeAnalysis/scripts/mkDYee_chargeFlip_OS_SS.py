@@ -3,7 +3,7 @@
 import os, sys
 
 import optparse
-import LatinoAnalysis.Gardener.hwwtools as hwwtools
+import LatinoAnalysis.Tools.hwwtools as hwwtools
 import math
 
 #import ROOT

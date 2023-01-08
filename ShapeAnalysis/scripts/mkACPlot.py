@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import optparse
-import LatinoAnalysis.Gardener.hwwtools as hwwtools
+import LatinoAnalysis.Tools.hwwtools as hwwtools
 from collections import OrderedDict
 
 import os

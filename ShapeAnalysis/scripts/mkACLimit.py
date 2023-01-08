@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import optparse
-import LatinoAnalysis.Gardener.hwwtools as hwwtools
+import LatinoAnalysis.Tools.hwwtools as hwwtools
 
 # functions used in everyday life ...
 from LatinoAnalysis.Tools.commonTools import *

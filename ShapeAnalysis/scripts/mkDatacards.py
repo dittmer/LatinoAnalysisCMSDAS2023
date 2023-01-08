@@ -6,7 +6,7 @@ argv = sys.argv
 sys.argv = argv[:1]
 import ROOT
 import optparse
-import LatinoAnalysis.Gardener.hwwtools as hwwtools
+import LatinoAnalysis.Tools.hwwtools as hwwtools
 import logging
 import collections
 import os.path

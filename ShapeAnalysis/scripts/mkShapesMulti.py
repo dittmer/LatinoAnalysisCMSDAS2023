@@ -8,7 +8,7 @@ import ROOT
 import optparse
 import copy
 import collections
-import LatinoAnalysis.Gardener.hwwtools as hwwtools
+import LatinoAnalysis.Tools.hwwtools as hwwtools
 import os.path
 import math
 import logging

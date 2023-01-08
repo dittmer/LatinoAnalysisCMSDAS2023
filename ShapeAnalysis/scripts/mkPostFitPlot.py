@@ -7,11 +7,11 @@ argv = sys.argv
 sys.argv = argv[:1]
 import ROOT
 import optparse
-import LatinoAnalysis.Gardener.hwwtools as hwwtools
+import LatinoAnalysis.Tools.hwwtools as hwwtools
 import os.path
 import string
 import logging
-import LatinoAnalysis.Gardener.odict as odict
+import LatinoAnalysis.Tools.odict as odict
 import traceback
 from array import array
 from collections import OrderedDict

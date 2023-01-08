@@ -11,11 +11,11 @@ import copy
 #import hwwinfo
 #import hwwsamples
 #import hwwtools
-import LatinoAnalysis.Gardener.hwwtools as hwwtools
+import LatinoAnalysis.Tools.hwwtools as hwwtools
 import os.path
 import string
 import logging
-import LatinoAnalysis.Gardener.odict as odict
+import LatinoAnalysis.Tools.odict as odict
 #from HWWAnalysis.Misc.ROOTAndUtils import TH1AddDirSentry
 import traceback
 from array import array

@@ -1261,7 +1261,7 @@ class ShapeFactory:
     # _____________________________________________________________________________
     def _test_xrootdFile(self, path):
       xrdserver=path.lstrip("root://").split("/")[0]
-      cmd='xrd '+xrdserver+' existfile '+path.split('root://'+xrdserver)[1]
+      cmd='xrdfs '+xrdserver+' stat '+path.split('root://'+xrdserver)[1]+' >/dev/null 2>&1'
       if os.system(cmd) == 0 : return True
       return False
 
@@ -1283,7 +1283,7 @@ class ShapeFactory:
             location = 'sdfarm.kr'
           elif 'root://' in path:
             exists = self._test_xrootdFile(path)
-            location = 'AAA'
+            location = 'XRDFS'
           else:
             exists = self._testLocalFile(path)
             location = 'local'
