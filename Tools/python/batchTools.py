@@ -459,7 +459,6 @@ class batchJobs :
            jdsFile.write('transfer_input_files = '+jName+'.py\n')
            jdsFile.write('should_transfer_files = YES\n')
            jdsFile.write('when_to_transfer_output = ON_EXIT_OR_EVICT\n')
-           jdsFile.write('transfer_output_files = '+jName+'.jid '+jName+'.done\n')
            jdsFile.write('Arguments = $(Cluster) $(Process)\n')
            jdsFile.write('queue\n')
            jdsFile.close()
@@ -532,12 +531,13 @@ class batchJobs :
        jdsMain = open(mastersub,'w')
        jdsMain.write('executable = $(JName).sh\n')
        jdsMain.write('universe = vanilla\n')
-       jdsMain.write('output = $(JName).out\n')
-       jdsMain.write('error = $(JName).err\n')
-       jdsMain.write('log = $(JName).log\n')
-       jdsMain.write('transfer_input_files = $(JNAME).py\n')
+       jdsMain.write('output = $Fnx(JName).out\n')
+       jdsMain.write('error = $Fnx(JName).err\n')
+       jdsMain.write('log = $Fnx(JName).log\n')
+       jdsMain.write('transfer_input_files = $Fnx(JName).py\n')
        jdsMain.write('should_transfer_files = YES\n')
        jdsMain.write('when_to_transfer_output = ON_EXIT_OR_EVICT\n')
+       jdsMain.write('initialdir = $Fp(JName)\n')
        jdsMain.write('Arguments = $(Cluster) $(Process)\n')
        jdsMain.write('queue JName in (\n')
        for jName in self.jobsList:
@@ -550,6 +550,7 @@ class batchJobs :
        jdsMain.close()
 
        os.system('condor_submit '+mastersub)
+       os.system('rm main.jds')
 
    def AddCopy (self,iStep,iTarget,inputFile,outputFile):
      "Copy file from local to remote server (outputFile = /store/...)"
