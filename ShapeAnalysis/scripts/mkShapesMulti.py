@@ -487,6 +487,12 @@ if __name__ == '__main__':
       cleanup = 'cd '+os.getcwd()+'/'+opt.outputDir+'; '
       allDone=True
 
+      # If running on LPC, need to copy files from EOS to local area
+      if 'fnal' in os.uname()[1]:
+        os.system('rm -r '+opt.outputDir)
+        os.system('xrdcp -r '+eosHomeArea+'/'+opt.eosOutputDir+' '+os.getcwd())
+        os.system('mv '+opt.eosOutputDir+' '+opt.outputDir)
+
       for iStep in stepList:
         for iTarget in targetList:
           if type(iTarget) is tuple:
