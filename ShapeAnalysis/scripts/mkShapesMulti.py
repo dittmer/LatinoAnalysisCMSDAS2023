@@ -233,6 +233,7 @@ if __name__ == '__main__':
     parser.add_option('--tag'            , dest='tag'            , help='Tag used for the shape file name'           , default=None)
     parser.add_option('--sigset'         , dest='sigset'         , help='Signal samples [SM]'                        , default='SM')
     parser.add_option('--outputDir'      , dest='outputDir'      , help='output directory'                           , default='./')
+    parser.add_option('--eosOutputDir'   , dest='eosOutputDir'   , help='output directory on EOS'                    , default='./')
     parser.add_option('--inputDir'       , dest='inputDir'       , help='input directory'                            , default='./data/')
     parser.add_option('--nuisancesFile'  , dest='nuisancesFile'  , help='file with nuisances configurations'         , default=None)
     parser.add_option('--doBatch'        , dest='doBatch'        , help='Run on batch'                               , default=False)
@@ -247,6 +248,7 @@ if __name__ == '__main__':
     parser.add_option("-W" , "--iihe-wall-time" , dest="IiheWallTime" , help="Requested IIHE queue Wall Time" , default='168:00:00')
     parser.add_option('--FixNegativeAfterHadd' , dest='FixNegativeAfterHadd' , help='When using "suppressNegative(Nuisances)", only fix after hadd step' , action='store_true', default=False)
     parser.add_option('--addUncertaintyOn0bincontent' , dest='addUncertaintyOn0bincontent' , help='add a symmetrical statistical error on bins with 0 bin content corresponding to the 68% upper limit' , action='store_true', default=False)
+    parser.add_option('--cmssw_tarball'  , dest='cmssw_tarball'  , help='tarball to submit to condor containing custom CMSSW', default=None)
 
     # read default parsing options as well
     hwwtools.addOptions(parser)
@@ -383,7 +385,7 @@ if __name__ == '__main__':
       else : use_singularity = False
 
       bpostFix=''
-      jobs = batchJobs('mkShapes',opt.tag,stepList,targetList,','.join(batchSplit),bpostFix,JOB_DIR_SPLIT_READY=True,USE_SINGULARITY=use_singularity)
+      jobs = batchJobs('mkShapes',opt.tag,stepList,targetList,','.join(batchSplit),bpostFix,JOB_DIR_SPLIT_READY=True,USE_SINGULARITY=use_singularity,cmssw_tarball=opt.cmssw_tarball)
       jobs.nThreads = nThreads
 
       jobs.AddPy2Sh()
@@ -400,7 +402,7 @@ if __name__ == '__main__':
 
       jobs.InitPy("\n")
 
-      outputDir=os.getcwd()+'/'+opt.outputDir
+      outputDir=eosHomeArea+'/'+opt.eosOutputDir
 
       for iStep in stepList:
         if iStep == 'ALL':

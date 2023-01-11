@@ -91,7 +91,8 @@ class ShapeFactory:
           outputFileName = outputDir+'/plots_'+self._tag+".root"
 
         print " outputFileName = ", outputFileName
-        os.system ("mkdir -p " + outputDir + "/")
+        if not outputDir.startswith('root://'):
+          os.system ("mkdir -p " + outputDir + "/")
 
         ROOT.TH1.SetDefaultSumw2(True)
 
@@ -808,6 +809,10 @@ class ShapeFactory:
           try:
             if realOutDir.startswith('/eos/cms'):
               cmd = ['xrdcp', '-f', outFile.GetName(), 'root://eoscms.cern.ch/' + realOutDir + '/' + os.path.basename(outputFileName)]
+              print ' '.join(cmd)
+              subprocess.Popen(cmd).communicate()
+            elif outputFileName.startswith('root://'):
+              cmd = ['xrdcp', '-f', '-p', outFile.GetName(), outputFileName]
               print ' '.join(cmd)
               subprocess.Popen(cmd).communicate()
             else:
